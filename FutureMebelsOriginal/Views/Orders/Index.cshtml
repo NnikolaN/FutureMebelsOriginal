@@ -3,14 +3,15 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
+<link rel="stylesheet" type="text/css" href="~/css/Background.css" />
+<link rel="stylesheet" type="text/css" href="~/css/StyleSheet.css" />
+<h1>Поръчка</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
-    <thead>
+    <thead> 
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Articuls)

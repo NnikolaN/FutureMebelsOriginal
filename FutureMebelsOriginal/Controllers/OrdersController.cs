@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FutureMebelsOriginal.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FutureMebelsOriginal.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class OrdersController : Controller
     {
         private readonly MebelsDbContext _context;
@@ -20,6 +22,7 @@ namespace FutureMebelsOriginal.Controllers
 
         // GET: Orders
         public async Task<IActionResult> Index()
+
         {
             var mebelsDbContext = _context.Orders.Include(o => o.Articuls);
             return View(await mebelsDbContext.ToListAsync());

@@ -22,7 +22,6 @@ namespace FutureMebelsOriginal.Controllers
 
         // GET: Orders
         public async Task<IActionResult> Index()
-
         {
             var mebelsDbContext = _context.Orders.Include(o => o.Articuls);
             return View(await mebelsDbContext.ToListAsync());

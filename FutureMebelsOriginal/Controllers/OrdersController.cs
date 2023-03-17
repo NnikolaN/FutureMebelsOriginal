@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace FutureMebelsOriginal.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class OrdersController : Controller
     {
         private readonly MebelsDbContext _context;
@@ -47,6 +47,8 @@ namespace FutureMebelsOriginal.Controllers
         }
 
         // GET: Orders/Create
+        [Authorize(Roles = "Admin")]
+
         public IActionResult Create()
         {
             ViewData["ArticulId"] = new SelectList(_context.Articuls, "Id", "Id");
@@ -71,6 +73,8 @@ namespace FutureMebelsOriginal.Controllers
         }
 
         // GET: Orders/Edit/5
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Orders == null)
@@ -124,6 +128,8 @@ namespace FutureMebelsOriginal.Controllers
         }
 
         // GET: Orders/Delete/5
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Orders == null)

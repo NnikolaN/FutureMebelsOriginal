@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FutureMebelsOriginal.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FutureMebelsOriginal.Controllers
 {
+    
     public class ArticulsController : Controller
     {
         private readonly MebelsDbContext _context;
@@ -46,6 +48,7 @@ namespace FutureMebelsOriginal.Controllers
         }
 
         // GET: Articuls/Create
+        [Authorize(Roles ="Admin")]
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
@@ -73,6 +76,8 @@ namespace FutureMebelsOriginal.Controllers
         }
 
         // GET: Articuls/Edit/5
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Articuls == null)
@@ -129,6 +134,8 @@ namespace FutureMebelsOriginal.Controllers
         }
 
         // GET: Articuls/Delete/5
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Articuls == null)

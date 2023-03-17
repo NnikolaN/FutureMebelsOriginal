@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FutureMebelsOriginal.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace FutureMebelsOriginal.Controllers
 {
-    
+      //[Authorize]
     public class OrdersController : Controller
     {
+      
         private readonly MebelsDbContext _context;
-
-        public OrdersController(MebelsDbContext context)
+        private readonly UserManager<Customer> _userManager;
+        public OrdersController(MebelsDbContext context, UserManager<Customer> userManager)
         {
+            _userManager = userManager;
             _context = context;
         }
 
@@ -47,7 +50,7 @@ namespace FutureMebelsOriginal.Controllers
         }
 
         // GET: Orders/Create
-        [Authorize(Roles = "Admin")]
+        //[Authorize]
 
         public IActionResult Create()
         {
@@ -73,7 +76,7 @@ namespace FutureMebelsOriginal.Controllers
         }
 
         // GET: Orders/Edit/5
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "kolioadmin")]
 
         public async Task<IActionResult> Edit(int? id)
         {
@@ -128,7 +131,7 @@ namespace FutureMebelsOriginal.Controllers
         }
 
         // GET: Orders/Delete/5
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "kolioadmin")]
 
         public async Task<IActionResult> Delete(int? id)
         {
@@ -139,6 +142,7 @@ namespace FutureMebelsOriginal.Controllers
 
             var order = await _context.Orders
                 .Include(o => o.Articuls)
+                .Include(o=>o.Customers)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (order == null)
             {

@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FutureMebelsOriginal.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace FutureMebelsOriginal.Controllers
 {
-    [Authorize(Roles = "Admin")]
+   // [Authorize]
     public class TypesController : Controller
+       
     {
         private readonly MebelsDbContext _context;
+        private readonly UserManager<Customer> _userManager;
 
-        public TypesController(MebelsDbContext context)
+        public TypesController(MebelsDbContext context, UserManager<Customer> userManager)
         {
+            _userManager = userManager;
             _context = context;
         }
 

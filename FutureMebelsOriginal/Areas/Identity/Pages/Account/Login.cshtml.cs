@@ -19,14 +19,18 @@ using Microsoft.Extensions.Logging;
 namespace FutureMebelsOriginal.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
+
     {
+        private readonly UserManager<Customer> _userManager;
         private readonly SignInManager<Customer> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<Customer> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<Customer> signInManager, UserManager<Customer> userManager, ILogger<LoginModel> logger)
         {
+
             _signInManager = signInManager;
             _logger = logger;
+            _userManager = userManager;
         }
 
        

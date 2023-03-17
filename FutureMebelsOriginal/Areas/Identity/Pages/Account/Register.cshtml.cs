@@ -26,21 +26,21 @@ namespace FutureMebelsOriginal.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<Customer> _signInManager;
         private readonly UserManager<Customer> _userManager;
-        private readonly IUserStore<Customer> _userStore;
-        private readonly IUserEmailStore<Customer> _emailStore;
+        //private readonly IUserStore<Customer> _userStore;
+        //private readonly IUserEmailStore<Customer> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
             UserManager<Customer> userManager,
-            IUserStore<Customer> userStore,
+           // IUserStore<Customer> userStore,
             SignInManager<Customer> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
             _userManager = userManager;
-            _userStore = userStore;
-            _emailStore = GetEmailStore();
+            //_userStore = userStore;
+            //_emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
@@ -109,8 +109,8 @@ namespace FutureMebelsOriginal.Areas.Identity.Pages.Account
                 customer.Adress = Input.Address;
                 //var user = CreateUser();
 
-                await _userStore.SetUserNameAsync(customer, Input.UserName, CancellationToken.None);
-                await _emailStore.SetEmailAsync(customer, Input.Email, CancellationToken.None);
+                //await _userStore.SetUserNameAsync(customer, Input.UserName, CancellationToken.None);
+                //await _emailStore.SetEmailAsync(customer, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(customer, Input.Password);
 
                 if (result.Succeeded)
@@ -149,27 +149,27 @@ namespace FutureMebelsOriginal.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private Customer CreateUser()
-        {
-            try
-            {
-                return Activator.CreateInstance<Customer>();
-            }
-            catch
-            {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(Customer)}'. " +
-                    $"Ensure that '{nameof(Customer)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
-            }
-        }
+        //private Customer CreateUser()
+        //{
+        //    try
+        //    {
+        //        return Activator.CreateInstance<Customer>();
+        //    }
+        //    catch
+        //    {
+        //        throw new InvalidOperationException($"Can't create an instance of '{nameof(Customer)}'. " +
+        //            $"Ensure that '{nameof(Customer)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+        //            $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+        //    }
+        //}
 
-        private IUserEmailStore<Customer> GetEmailStore()
-        {
-            if (!_userManager.SupportsUserEmail)
-            {
-                throw new NotSupportedException("The default UI requires a user store with email support.");
-            }
-            return (IUserEmailStore<Customer>)_userStore;
-        }
+        //private IUserEmailStore<Customer> GetEmailStore()
+        //{
+        //    if (!_userManager.SupportsUserEmail)
+        //    {
+        //        throw new NotSupportedException("The default UI requires a user store with email support.");
+        //    }
+        //    return (IUserEmailStore<Customer>)_userStore;
+        //}
     }
 }

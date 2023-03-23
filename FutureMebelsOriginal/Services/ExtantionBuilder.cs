@@ -20,19 +20,19 @@ namespace FutureMebelsOriginal.Services
             try
             {
                 var context = services.GetRequiredService<MebelsDbContext>();
-                var customerManager = services.GetRequiredService<UserManager<Customer>>();
+                var userManager = services.GetRequiredService<UserManager<Customer>>();
                 var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                 //Sazdavane na roles
                 await SeedRolesAsync(roleManager);
                 //sazdavane na SUPER ADMIN s vsi4kite mu roli
-                await SeedSuperAdminAsync(customerManager);
+                await SeedSuperAdminAsync(userManager);
             }
             catch (Exception ex)
             {
                 var logger = loggerFactory.CreateLogger<Program>();
                 logger.LogError(ex, "An error occurred seeding the DB.");
             }
-
+                                          
             return app;
         }
         public static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)

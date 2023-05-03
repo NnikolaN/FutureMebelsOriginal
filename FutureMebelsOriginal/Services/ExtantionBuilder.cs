@@ -1,16 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
-using FutureMebelsOriginal.Data;
-using FutureMebelsOriginal.Models;
+﻿using FutureMebelsOriginal.Data;
+using Microsoft.AspNetCore.Identity;
 
-namespace FutureMebelsOriginal.Services
+namespace ASPShopBag.Services
 {
-
-
-    public static class ExtansionBuldier
+    public static class ApplicationBuilderExtension
     {
-
         public static async Task<IApplicationBuilder> PrepareDataBase(this IApplicationBuilder app)
-
         {
             using var scope = app.ApplicationServices.CreateScope();
 
@@ -32,7 +27,7 @@ namespace FutureMebelsOriginal.Services
                 var logger = loggerFactory.CreateLogger<Program>();
                 logger.LogError(ex, "An error occurred seeding the DB.");
             }
-                                          
+
             return app;
         }
         public static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
@@ -49,16 +44,17 @@ namespace FutureMebelsOriginal.Services
             await roleManager.CreateAsync(new IdentityRole("User"));
             await roleManager.CreateAsync(new IdentityRole("Guest"));
         }
+
         public static async Task SeedSuperAdminAsync(UserManager<Customer> userManager)
         {
             //Seed Default User
             var defaultUser = new Customer
             {
-                UserName = "kolioadmin",
-                Email = "superadmin@gmail.com",
-                FirstMidName = "NikolaNikolv",
-                Adress = "banglagrebesh",
-                PhoneNumber = "0899870862",
+                UserName = "kolio",
+                Email = "mortinka2017@gmail.com",
+                FirstMidName = "Nikola Nikolov",
+            
+                PhoneNumber = "0899999999",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true
             };
@@ -66,16 +62,14 @@ namespace FutureMebelsOriginal.Services
             var user = await userManager.FindByEmailAsync(defaultUser.Email);
             if (user == null)
             {
-                var result = await userManager.CreateAsync(defaultUser, "Niko1234!");
+                var result = await userManager.CreateAsync(defaultUser, "Niko12345!");
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(defaultUser, "Admin");
                     //await userManager.AddToRoleAsync(defaultUser, Roles.Guest.ToString());
-                    //await userManager.AddToRoleAsync(defaultUser, Roles.User.ToString());
+                    //await userManager.AddToRoleAsync(defaultUser, Roles.User.ToString());                    
                 }
             }
         }
     }
 }
-
-

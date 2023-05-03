@@ -13,6 +13,7 @@ builder.Services.AddDbContext<MebelsDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<Customer>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<MebelsDbContext>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddControllers(

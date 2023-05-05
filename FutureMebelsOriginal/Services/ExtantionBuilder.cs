@@ -53,7 +53,7 @@ namespace ASPShopBag.Services
                 UserName = "kolio",
                 Email = "mortinka2017@gmail.com",
                 FirstMidName = "Nikola Nikolov",
-            
+                Adress = "Karlovo",
                 PhoneNumber = "0899999999",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true

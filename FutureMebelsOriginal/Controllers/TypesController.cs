@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace FutureMebelsOriginal.Controllers
 {
-   // [Authorize]
+    [Authorize]
     public class TypesController : Controller
        
     {

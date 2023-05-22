@@ -48,7 +48,7 @@ namespace FutureMebelsOriginal.Controllers
         }
 
         // GET: Articuls/Create
-        //[Authorize(Roles ="Admin")]
+        [Authorize(Roles ="Admin")]
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace FutureMebelsOriginal.Controllers
 {
-      [Authorize]
+     [Authorize]
     public class OrdersController : Controller
     {
       
@@ -76,7 +76,7 @@ namespace FutureMebelsOriginal.Controllers
         }
 
         // GET: Orders/Edit/5
-        //[Authorize(Roles = "kolioadmin")]
+       
 
         public async Task<IActionResult> Edit(int? id)
         {
@@ -131,7 +131,7 @@ namespace FutureMebelsOriginal.Controllers
         }
 
         // GET: Orders/Delete/5
-        //[Authorize(Roles = "kolioadmin")]
+        
 
         public async Task<IActionResult> Delete(int? id)
         {

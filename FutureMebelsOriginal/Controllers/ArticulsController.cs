@@ -76,7 +76,7 @@ namespace FutureMebelsOriginal.Controllers
         }
 
         // GET: Articuls/Edit/5
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
 
         public async Task<IActionResult> Edit(int? id)
         {
@@ -134,7 +134,7 @@ namespace FutureMebelsOriginal.Controllers
         }
 
         // GET: Articuls/Delete/5
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
 
         public async Task<IActionResult> Delete(int? id)
         {

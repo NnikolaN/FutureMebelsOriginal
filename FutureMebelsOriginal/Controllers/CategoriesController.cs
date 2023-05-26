@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FutureMebelsOriginal.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FutureMebelsOriginal.Controllers
 {
+    
     public class CategoriesController : Controller
     {
         private readonly MebelsDbContext _context;

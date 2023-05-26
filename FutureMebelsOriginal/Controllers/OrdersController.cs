@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace FutureMebelsOriginal.Controllers
 {
-     [Authorize]
+    [Authorize(Roles = "Admin")]
     public class OrdersController : Controller
     {
       

@@ -50,7 +50,7 @@ namespace ASPShopBag.Services
             //Seed Default User
             var defaultUser = new Customer
             {
-                UserName = "kolio",
+                UserName = "superadmin",
                 Email = "mortinka2017@gmail.com",
                 FirstMidName = "Nikola Nikolov",
                 Adress = "Karlovo",
@@ -62,7 +62,7 @@ namespace ASPShopBag.Services
             var user = await userManager.FindByEmailAsync(defaultUser.Email);
             if (user == null)
             {
-                var result = await userManager.CreateAsync(defaultUser, "Niko12345!");
+                var result = await userManager.CreateAsync(defaultUser, "Niko1234!");
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(defaultUser, "Admin");
